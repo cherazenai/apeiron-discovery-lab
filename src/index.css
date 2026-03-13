@@ -6,59 +6,58 @@
 
 @layer base {
   :root {
-    --background: 240 6% 4%;
-    --foreground: 220 20% 90%;
+    --background: 0 0% 100%;
+    --foreground: 240 10% 10%;
 
-    --card: 240 6% 7%;
-    --card-foreground: 220 20% 90%;
+    --card: 0 0% 99%;
+    --card-foreground: 240 10% 10%;
 
-    --popover: 240 6% 7%;
-    --popover-foreground: 220 20% 90%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 10%;
 
-    --primary: 255 70% 68%;
+    --primary: 255 70% 58%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 166 82% 51%;
-    --secondary-foreground: 240 6% 4%;
+    --secondary: 166 60% 42%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 240 5% 12%;
-    --muted-foreground: 220 10% 55%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 10% 42%;
 
-    --accent: 325 100% 65%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 255 30% 96%;
+    --accent-foreground: 255 70% 58%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 240 5% 16%;
-    --input: 240 5% 16%;
-    --ring: 255 70% 68%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 255 70% 58%;
 
-    --radius: 0.75rem;
+    --radius: 1rem;
 
     /* Custom Cherazen tokens */
-    --cosmic-violet: 255 70% 68%;
-    --aurora-teal: 166 82% 51%;
-    --plasma-magenta: 325 100% 65%;
-    --obsidian: 240 6% 4%;
-    --surface-elevated: 240 5% 9%;
-    --surface-glass: 240 5% 12%;
-    --text-primary: 0 0% 100%;
-    --text-secondary: 220 10% 70%;
-    --text-muted: 220 10% 45%;
-    --gradient-violet-teal: linear-gradient(135deg, hsl(255 70% 68%), hsl(166 82% 51%));
-    --gradient-violet-magenta: linear-gradient(135deg, hsl(255 70% 68%), hsl(325 100% 65%));
-    --glow-violet: 0 0 60px -10px hsl(255 70% 68% / 0.4);
-    --glow-teal: 0 0 60px -10px hsl(166 82% 51% / 0.3);
+    --cosmic-violet: 255 70% 58%;
+    --aurora-teal: 166 60% 42%;
+    --plasma-magenta: 325 80% 55%;
+    --surface-elevated: 220 14% 97%;
+    --surface-glass: 220 14% 96%;
+    --text-primary: 240 10% 10%;
+    --text-secondary: 220 10% 35%;
+    --text-muted: 220 10% 55%;
+    --gradient-violet-teal: linear-gradient(135deg, hsl(255 70% 58%), hsl(166 60% 42%));
+    --gradient-violet-magenta: linear-gradient(135deg, hsl(255 70% 58%), hsl(325 80% 55%));
+    --glow-violet: 0 8px 40px -8px hsl(255 70% 58% / 0.2);
+    --glow-teal: 0 8px 40px -8px hsl(166 60% 42% / 0.15);
 
-    --sidebar-background: 240 6% 4%;
-    --sidebar-foreground: 220 20% 90%;
-    --sidebar-primary: 255 70% 68%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 240 10% 10%;
+    --sidebar-primary: 255 70% 58%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 5% 12%;
-    --sidebar-accent-foreground: 220 20% 90%;
-    --sidebar-border: 240 5% 16%;
-    --sidebar-ring: 255 70% 68%;
+    --sidebar-accent: 220 14% 96%;
+    --sidebar-accent-foreground: 240 10% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 255 70% 58%;
   }
 }
 
@@ -88,7 +87,9 @@
   }
 
   .bg-glass {
-    @apply bg-surface-glass/50 backdrop-blur-xl border border-border/50;
+    background: hsla(0, 0%, 100%, 0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid hsl(var(--border));
   }
 
   .glow-violet {
@@ -100,7 +101,11 @@
   }
 
   .section-padding {
-    @apply px-4 sm:px-6 lg:px-8 py-20 md:py-32;
+    @apply px-4 sm:px-6 lg:px-8 py-24 md:py-36;
+  }
+
+  .section-padding-lg {
+    @apply px-4 sm:px-6 lg:px-8 py-32 md:py-44;
   }
 }
 
@@ -111,13 +116,13 @@ html {
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: hsl(var(--obsidian));
+  background: hsl(var(--muted));
 }
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--muted));
+  background: hsl(var(--border));
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
