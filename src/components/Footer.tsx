@@ -2,7 +2,7 @@ import apeironLogo from "@/assets/apeiron-logo.png";
 
 const Footer = () => {
   return (
-    <footer className="border-t border-border py-12 px-4">
+    <footer className="border-t border-border py-12 px-4 bg-background">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="flex items-center gap-2">
           <img src={apeironLogo} alt="Cherazen" className="h-6 w-6" />

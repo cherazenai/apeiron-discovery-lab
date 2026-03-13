@@ -25,15 +25,13 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
-          <a href="#home" className="flex items-center gap-2">
+          <a href="#home" className="flex items-center gap-2.5">
             <img src={apeironLogo} alt="Cherazen" className="h-8 w-8" />
             <span className="font-serif text-xl font-bold text-foreground tracking-tight">
               Cherazen
             </span>
           </a>
 
-          {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <a
@@ -46,19 +44,17 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* CTA */}
           <div className="hidden md:block">
             <a
               href="https://ai.cherazen.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity shadow-md"
             >
               Launch ApeironAI
             </a>
           </div>
 
-          {/* Mobile toggle */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden text-foreground"
@@ -69,14 +65,13 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-card border-t border-border"
+            className="md:hidden bg-background border-t border-border"
           >
             <div className="px-4 py-6 space-y-4">
               {navLinks.map((link) => (
@@ -93,7 +88,7 @@ const Navbar = () => {
                 href="https://ai.cherazen.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block w-full text-center px-5 py-3 rounded-lg bg-primary text-primary-foreground text-sm font-medium"
+                className="block w-full text-center px-5 py-3 rounded-full bg-primary text-primary-foreground text-sm font-medium"
               >
                 Launch ApeironAI
               </a>
