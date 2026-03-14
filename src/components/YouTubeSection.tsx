@@ -48,23 +48,20 @@ const YouTubeSection = () => {
 
           {/* Preview Card */}
           <motion.a
-            href="https://youtube.com/@visionandromeda?si=5iJlsoQUrIyHk6lh"
+           href="https://youtu.be/nJ6iqTi6QEE?si=CD1QXBc5wK95jfB-"
             target="_blank"
             rel="noopener noreferrer"
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="group relative aspect-video rounded-3xl overflow-hidden bg-foreground/5 border border-border shadow-xl hover:shadow-2xl transition-all duration-500"
+            className="group relative aspect-video rounded-3xl overflow-hidden border border-border shadow-xl hover:shadow-2xl transition-all duration-500"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10" />
+            <img src={visionAndromedaThumb} alt="Vision Andromeda YouTube Channel" className="absolute inset-0 w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors duration-300" />
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="w-16 h-16 rounded-full bg-primary/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
                 <Play className="w-7 h-7 text-primary-foreground ml-1" />
               </div>
-            </div>
-            <div className="absolute bottom-4 left-4 right-4">
-              <p className="text-sm font-sans font-medium text-foreground">Vision Andromeda</p>
-              <p className="text-xs text-muted-foreground">@visionandromeda</p>
             </div>
           </motion.a>
         </motion.div>
