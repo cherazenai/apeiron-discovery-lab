@@ -1,4 +1,4 @@
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { Layers, Zap, FlaskRound, Pill, Cloud, Rocket } from "lucide-react";
 import heroMolecular from "@/assets/hero-molecular.jpg";
@@ -16,6 +16,44 @@ const areas = [
   { icon: Cloud, title: "Climate Science", desc: "Developing solutions for carbon capture and environmental sustainability.", img: carbonImg },
   { icon: Rocket, title: "Aerospace", desc: "Exploring advanced materials and propulsion systems.", img: aerospaceImg },
 ];
+
+const ParallaxCard = ({ area, i, isInView }: { area: typeof areas[0]; i: number; isInView: boolean }) => {
+  const cardRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start end", "end start"],
+  });
+  const imgY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+
+  return (
+    <motion.div
+      ref={cardRef}
+      key={area.title}
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.5, delay: 0.08 * i }}
+      className="group relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500"
+    >
+      <div className="aspect-[4/3] overflow-hidden relative">
+        <motion.img
+          src={area.img}
+          alt={area.title}
+          className="w-full h-full object-cover scale-110"
+          style={{ y: imgY }}
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/30 to-transparent" />
+      </div>
+      <div className="absolute bottom-0 left-0 right-0 p-7">
+        <div className="flex items-center gap-3 mb-2">
+          <area.icon className="w-5 h-5 text-primary-foreground/80" />
+          <h3 className="text-base font-serif font-semibold text-primary-foreground">{area.title}</h3>
+        </div>
+        <p className="text-sm text-primary-foreground/70 font-sans">{area.desc}</p>
+      </div>
+    </motion.div>
+  );
+};
 
 const ResearchSection = () => {
   const ref = useRef(null);
@@ -41,30 +79,7 @@ const ResearchSection = () => {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {areas.map((area, i) => (
-            <motion.div
-              key={area.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.08 * i }}
-              className="group relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500"
-            >
-              <div className="aspect-[4/3] overflow-hidden">
-                <img
-                  src={area.img}
-                  alt={area.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/30 to-transparent" />
-              </div>
-              <div className="absolute bottom-0 left-0 right-0 p-7">
-                <div className="flex items-center gap-3 mb-2">
-                  <area.icon className="w-5 h-5 text-primary-foreground/80" />
-                  <h3 className="text-base font-serif font-semibold text-primary-foreground">{area.title}</h3>
-                </div>
-                <p className="text-sm text-primary-foreground/70 font-sans">{area.desc}</p>
-              </div>
-            </motion.div>
+            <ParallaxCard key={area.title} area={area} i={i} isInView={isInView} />
           ))}
         </div>
 

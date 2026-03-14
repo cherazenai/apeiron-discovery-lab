@@ -1,47 +1,136 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 import apeironLogo from "@/assets/apeiron-logo.png";
 
 const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "Vision", href: "#vision" },
-  { label: "Products", href: "#products" },
-  { label: "Research", href: "#research" },
-  { label: "Founder", href: "#founder" },
-  { label: "Blog", href: "#blog" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "#home", sectionId: "home" },
+  { label: "Vision", href: "#vision", sectionId: "vision" },
+  { label: "Products", href: "#products", sectionId: "products" },
+  { label: "Research", href: "#research", sectionId: "research" },
+  { label: "Founder", href: "#founder", sectionId: "founder" },
+  { label: "Blog", href: "/blog", sectionId: null },
+  { label: "Contact", href: "#contact", sectionId: "contact" },
 ];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
+  const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
+
+  useEffect(() => {
+    if (!isHomePage) return;
+
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+
+      const sections = navLinks
+        .filter((l) => l.sectionId)
+        .map((l) => l.sectionId as string);
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sections[i]);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 120) {
+            setActiveSection(sections[i]);
+            return;
+          }
+        }
+      }
+      setActiveSection("home");
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isHomePage]);
+
+  const handleNavClick = (link: typeof navLinks[0]) => {
+    setIsOpen(false);
+    if (link.sectionId && isHomePage) {
+      const el = document.getElementById(link.sectionId);
+      el?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="fixed top-0 left-0 right-0 z-50 bg-glass"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? "bg-glass shadow-sm" : "bg-transparent"
+      }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
-          <a href="#home" className="flex items-center gap-2.5">
+          <Link to="/" className="flex items-center gap-2.5">
             <img src={apeironLogo} alt="Cherazen" className="h-8 w-8" />
             <span className="font-serif text-xl font-bold text-foreground tracking-tight">
               Cherazen
             </span>
-          </a>
+          </Link>
 
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="text-sm font-sans text-muted-foreground hover:text-foreground transition-colors duration-200"
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = link.sectionId ? activeSection === link.sectionId && isHomePage : location.pathname === link.href;
+              
+              if (link.sectionId && isHomePage) {
+                return (
+                  <button
+                    key={link.label}
+                    onClick={() => handleNavClick(link)}
+                    className={`relative text-sm font-sans transition-colors duration-200 ${
+                      isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    {link.label}
+                    {isActive && (
+                      <motion.div
+                        layoutId="nav-underline"
+                        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full"
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                  </button>
+                );
+              }
+
+              if (link.sectionId && !isHomePage) {
+                return (
+                  <Link
+                    key={link.label}
+                    to={`/${link.href}`}
+                    className="text-sm font-sans text-muted-foreground hover:text-foreground transition-colors duration-200"
+                  >
+                    {link.label}
+                  </Link>
+                );
+              }
+
+              return (
+                <Link
+                  key={link.label}
+                  to={link.href}
+                  className={`relative text-sm font-sans transition-colors duration-200 ${
+                    isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {link.label}
+                  {isActive && (
+                    <motion.div
+                      layoutId="nav-underline"
+                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </Link>
+              );
+            })}
           </div>
 
           <div className="hidden md:block">
@@ -49,7 +138,7 @@ const Navbar = () => {
               href="https://ai.cherazen.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity shadow-md"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02]"
             >
               Launch ApeironAI
             </a>
@@ -71,19 +160,34 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-background border-t border-border"
+            className="md:hidden bg-background/95 backdrop-blur-xl border-t border-border"
           >
             <div className="px-4 py-6 space-y-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className="block text-base text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  {link.label}
-                </a>
-              ))}
+              {navLinks.map((link) => {
+                if (link.sectionId && isHomePage) {
+                  return (
+                    <button
+                      key={link.label}
+                      onClick={() => handleNavClick(link)}
+                      className={`block text-base transition-colors w-full text-left ${
+                        activeSection === link.sectionId ? "text-primary font-medium" : "text-muted-foreground hover:text-foreground"
+                      }`}
+                    >
+                      {link.label}
+                    </button>
+                  );
+                }
+                return (
+                  <Link
+                    key={link.label}
+                    to={link.sectionId ? `/${link.href}` : link.href}
+                    onClick={() => setIsOpen(false)}
+                    className="block text-base text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
               <a
                 href="https://ai.cherazen.com"
                 target="_blank"
