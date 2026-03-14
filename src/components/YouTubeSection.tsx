@@ -1,6 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Youtube, Play } from "lucide-react";
+import visionAndromedaThumb from "@/assets/vision-andromeda-thumb.png";
 
 const YouTubeSection = () => {
   const ref = useRef(null);
