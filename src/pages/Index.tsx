@@ -6,6 +6,8 @@ import ResearchSection from "@/components/ResearchSection";
 import TechApproachSection from "@/components/TechApproachSection";
 import FounderSection from "@/components/FounderSection";
 import ProjectsSection from "@/components/ProjectsSection";
+import YouTubeSection from "@/components/YouTubeSection";
+import SocialSection from "@/components/SocialSection";
 import ContactSection from "@/components/ContactSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
@@ -22,6 +24,8 @@ const Index = () => {
         <TechApproachSection />
         <FounderSection />
         <ProjectsSection />
+        <YouTubeSection />
+        <SocialSection />
         <ContactSection />
         <CTASection />
       </main>
