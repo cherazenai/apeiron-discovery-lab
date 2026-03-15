@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, FlaskConical } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import apeironLogo from "@/assets/apeiron-logo.png";
 
 const navLinks = [
@@ -9,6 +10,7 @@ const navLinks = [
   { label: "Vision", href: "#vision", sectionId: "vision" },
   { label: "Products", href: "#products", sectionId: "products" },
   { label: "Research", href: "#research", sectionId: "research" },
+  { label: "Labs", href: "https://labs.cherazen.com", sectionId: null, external: true, icon: true },
   { label: "Founder", href: "#founder", sectionId: "founder" },
   { label: "Blog", href: "/blog", sectionId: null },
   { label: "Contact", href: "#contact", sectionId: "contact" },
@@ -57,6 +59,93 @@ const Navbar = () => {
     }
   };
 
+  const renderDesktopLink = (link: typeof navLinks[0]) => {
+    const isActive = link.sectionId
+      ? activeSection === link.sectionId && isHomePage
+      : !link.external && location.pathname === link.href;
+
+    // External link (Labs)
+    if (link.external) {
+      const linkEl = (
+        <a
+          key={link.label}
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="relative flex items-center gap-1.5 text-sm font-sans text-muted-foreground hover:text-foreground transition-colors duration-200 group"
+        >
+          {link.icon && <FlaskConical size={14} className="text-primary/70 group-hover:text-primary transition-colors" />}
+          {link.label}
+          <span className="absolute -inset-x-2 -inset-y-1 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-primary/5 to-secondary/5 -z-10" />
+        </a>
+      );
+
+      return (
+        <Tooltip key={link.label}>
+          <TooltipTrigger asChild>{linkEl}</TooltipTrigger>
+          <TooltipContent side="bottom" className="text-xs">
+            Interactive AI Research Experiments
+          </TooltipContent>
+        </Tooltip>
+      );
+    }
+
+    // Internal section link on homepage
+    if (link.sectionId && isHomePage) {
+      return (
+        <button
+          key={link.label}
+          onClick={() => handleNavClick(link)}
+          className={`relative text-sm font-sans transition-colors duration-200 ${
+            isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          {link.label}
+          {isActive && (
+            <motion.div
+              layoutId="nav-underline"
+              className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full"
+              transition={{ type: "spring", stiffness: 380, damping: 30 }}
+            />
+          )}
+        </button>
+      );
+    }
+
+    // Section link but not on homepage
+    if (link.sectionId && !isHomePage) {
+      return (
+        <Link
+          key={link.label}
+          to={`/${link.href}`}
+          className="text-sm font-sans text-muted-foreground hover:text-foreground transition-colors duration-200"
+        >
+          {link.label}
+        </Link>
+      );
+    }
+
+    // Regular internal route (Blog)
+    return (
+      <Link
+        key={link.label}
+        to={link.href}
+        className={`relative text-sm font-sans transition-colors duration-200 ${
+          isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+        }`}
+      >
+        {link.label}
+        {isActive && (
+          <motion.div
+            layoutId="nav-underline"
+            className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full"
+            transition={{ type: "spring", stiffness: 380, damping: 30 }}
+          />
+        )}
+      </Link>
+    );
+  };
+
   return (
     <motion.nav
       initial={{ y: -100 }}
@@ -76,61 +165,7 @@ const Navbar = () => {
           </Link>
 
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => {
-              const isActive = link.sectionId ? activeSection === link.sectionId && isHomePage : location.pathname === link.href;
-              
-              if (link.sectionId && isHomePage) {
-                return (
-                  <button
-                    key={link.label}
-                    onClick={() => handleNavClick(link)}
-                    className={`relative text-sm font-sans transition-colors duration-200 ${
-                      isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
-                    }`}
-                  >
-                    {link.label}
-                    {isActive && (
-                      <motion.div
-                        layoutId="nav-underline"
-                        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full"
-                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                      />
-                    )}
-                  </button>
-                );
-              }
-
-              if (link.sectionId && !isHomePage) {
-                return (
-                  <Link
-                    key={link.label}
-                    to={`/${link.href}`}
-                    className="text-sm font-sans text-muted-foreground hover:text-foreground transition-colors duration-200"
-                  >
-                    {link.label}
-                  </Link>
-                );
-              }
-
-              return (
-                <Link
-                  key={link.label}
-                  to={link.href}
-                  className={`relative text-sm font-sans transition-colors duration-200 ${
-                    isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  {link.label}
-                  {isActive && (
-                    <motion.div
-                      layoutId="nav-underline"
-                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                </Link>
-              );
-            })}
+            {navLinks.map(renderDesktopLink)}
           </div>
 
           <div className="hidden md:block">
@@ -164,6 +199,21 @@ const Navbar = () => {
           >
             <div className="px-4 py-6 space-y-4">
               {navLinks.map((link) => {
+                if (link.external) {
+                  return (
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => setIsOpen(false)}
+                      className="flex items-center gap-2 text-base text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      <FlaskConical size={16} className="text-primary/70" />
+                      {link.label}
+                    </a>
+                  );
+                }
                 if (link.sectionId && isHomePage) {
                   return (
                     <button
