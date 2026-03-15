@@ -84,7 +84,7 @@ const SystemStatusPanel = () => {
       transition={{ delay: 0.8, duration: 0.7 }}
       className="mt-10 mx-auto max-w-2xl"
     >
-      <div className="rounded-2xl border border-primary/15 bg-background/60 backdrop-blur-xl p-5 shadow-[0_0_30px_-10px_hsl(255_70%_58%/0.15)]">
+      <div className="rounded-2xl border border-primary/15 bg-background/60 backdrop-blur-xl p-4 sm:p-5 shadow-[0_0_30px_-10px_hsl(255_70%_58%/0.15)] mx-2 sm:mx-0">
         <div className="flex items-center gap-2 mb-4">
           <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
           <span className="text-xs font-mono uppercase tracking-widest text-muted-foreground">System Status</span>
@@ -116,7 +116,7 @@ const HeroSection = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
-    <section id="home" ref={sectionRef} className="relative min-h-screen flex items-center overflow-hidden">
+    <section id="home" ref={sectionRef} className="relative min-h-screen flex items-center overflow-hidden max-w-full">
       <motion.div className="absolute inset-0" style={{ y: bgY }}>
         <img
           src={heroImg}
@@ -124,14 +124,14 @@ const HeroSection = () => {
           className="w-full h-full object-cover scale-110"
           loading="eager"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/85 to-background" />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.80) 40%, rgba(255,255,255,0.92) 100%)" }} />
       </motion.div>
 
       <MeshGradientBg />
 
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-primary/5 blur-[120px] animate-pulse-glow" />
-        <div className="absolute bottom-1/3 right-1/4 w-[400px] h-[400px] rounded-full bg-secondary/5 blur-[100px] animate-pulse-glow" style={{ animationDelay: "1.5s" }} />
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] max-w-[100vw] h-[600px] rounded-full bg-primary/5 blur-[120px] animate-pulse-glow" />
+        <div className="absolute bottom-1/3 right-1/4 w-[400px] max-w-[100vw] h-[400px] rounded-full bg-secondary/5 blur-[100px] animate-pulse-glow" style={{ animationDelay: "1.5s" }} />
       </div>
 
       <motion.div
@@ -159,24 +159,24 @@ const HeroSection = () => {
             <span className="text-gradient-violet-teal">Future of Scientific Discovery</span>
           </h1>
 
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-5 font-sans leading-relaxed">
+          <p className="text-lg md:text-xl text-foreground/80 max-w-2xl mx-auto mb-5 font-sans leading-relaxed">
             Cherazen is an independent AI research initiative building systems that help scientists discover new knowledge faster.
           </p>
 
-          <p className="text-base text-muted-foreground/80 max-w-2xl mx-auto mb-5 font-sans leading-relaxed">
+          <p className="text-base text-foreground/70 max-w-2xl mx-auto mb-5 font-sans leading-relaxed">
             Artificial intelligence is beginning to transform how scientific discovery happens. Cherazen is building next-generation tools that combine knowledge synthesis, reasoning models, and simulation systems to accelerate breakthroughs across multiple scientific disciplines.
           </p>
 
-          <p className="text-base text-muted-foreground/80 max-w-2xl mx-auto mb-12 font-sans leading-relaxed">
+          <p className="text-base text-foreground/70 max-w-2xl mx-auto mb-12 font-sans leading-relaxed">
             Our goal is to create intelligent systems capable of assisting researchers in exploring ideas, generating hypotheses, and testing possibilities before real-world experiments.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center px-2">
             <a
               href="https://ai.cherazen.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-primary text-primary-foreground font-medium text-base hover:opacity-90 transition-all duration-300 shadow-lg glow-violet hover:shadow-xl hover:scale-[1.02]"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-primary text-primary-foreground font-medium text-base hover:opacity-90 transition-all duration-300 shadow-lg glow-violet hover:shadow-xl hover:scale-[1.02] min-h-[48px]"
             >
               Explore ApeironAI
             </a>
@@ -184,7 +184,7 @@ const HeroSection = () => {
               href="https://ai.cherazen.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full border border-border text-foreground font-medium text-base hover:bg-muted transition-all duration-300 shadow-sm hover:shadow-md hover:scale-[1.02]"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-full border-2 border-border text-foreground font-medium text-base hover:bg-muted transition-all duration-300 shadow-sm hover:shadow-md hover:scale-[1.02] min-h-[48px]"
             >
               Join Early Access
             </a>
@@ -192,11 +192,9 @@ const HeroSection = () => {
               href="https://labs.cherazen.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative inline-flex items-center justify-center px-8 py-4 rounded-full font-medium text-base transition-all duration-300 hover:scale-[1.02] overflow-hidden"
+              className="group relative inline-flex items-center justify-center px-8 py-4 rounded-full font-medium text-base transition-all duration-300 hover:scale-[1.02] overflow-hidden min-h-[48px]"
             >
-              {/* Glass bg */}
-              <span className="absolute inset-0 rounded-full bg-background/60 backdrop-blur-md border border-primary/20 group-hover:border-primary/40 transition-colors" />
-              {/* Gradient glow on hover */}
+              <span className="absolute inset-0 rounded-full bg-background/70 backdrop-blur-md border-2 border-primary/25 group-hover:border-primary/50 transition-colors" />
               <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 shadow-[0_0_24px_4px_hsl(255_70%_58%/0.2),0_0_24px_4px_hsl(166_60%_42%/0.15)]" />
               <span className="relative text-foreground">Enter Discovery Lab</span>
             </a>
