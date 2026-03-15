@@ -116,7 +116,7 @@ const HeroSection = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
-    <section id="home" ref={sectionRef} className="relative min-h-screen flex items-center overflow-hidden">
+    <section id="home" ref={sectionRef} className="relative min-h-screen flex items-center overflow-hidden max-w-full">
       <motion.div className="absolute inset-0" style={{ y: bgY }}>
         <img
           src={heroImg}
@@ -124,7 +124,7 @@ const HeroSection = () => {
           className="w-full h-full object-cover scale-110"
           loading="eager"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/85 to-background" />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.80) 40%, rgba(255,255,255,0.92) 100%)" }} />
       </motion.div>
 
       <MeshGradientBg />
