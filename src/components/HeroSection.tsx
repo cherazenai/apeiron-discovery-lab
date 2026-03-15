@@ -84,7 +84,7 @@ const SystemStatusPanel = () => {
       transition={{ delay: 0.8, duration: 0.7 }}
       className="mt-10 mx-auto max-w-2xl"
     >
-      <div className="rounded-2xl border border-primary/15 bg-background/60 backdrop-blur-xl p-5 shadow-[0_0_30px_-10px_hsl(255_70%_58%/0.15)]">
+      <div className="rounded-2xl border border-primary/15 bg-background/60 backdrop-blur-xl p-4 sm:p-5 shadow-[0_0_30px_-10px_hsl(255_70%_58%/0.15)] mx-2 sm:mx-0">
         <div className="flex items-center gap-2 mb-4">
           <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
           <span className="text-xs font-mono uppercase tracking-widest text-muted-foreground">System Status</span>
