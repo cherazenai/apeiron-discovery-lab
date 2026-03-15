@@ -129,9 +129,9 @@ const HeroSection = () => {
 
       <MeshGradientBg />
 
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-primary/5 blur-[120px] animate-pulse-glow" />
-        <div className="absolute bottom-1/3 right-1/4 w-[400px] h-[400px] rounded-full bg-secondary/5 blur-[100px] animate-pulse-glow" style={{ animationDelay: "1.5s" }} />
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] max-w-[100vw] h-[600px] rounded-full bg-primary/5 blur-[120px] animate-pulse-glow" />
+        <div className="absolute bottom-1/3 right-1/4 w-[400px] max-w-[100vw] h-[400px] rounded-full bg-secondary/5 blur-[100px] animate-pulse-glow" style={{ animationDelay: "1.5s" }} />
       </div>
 
       <motion.div
