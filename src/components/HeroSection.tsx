@@ -171,12 +171,12 @@ const HeroSection = () => {
             Our goal is to create intelligent systems capable of assisting researchers in exploring ideas, generating hypotheses, and testing possibilities before real-world experiments.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center px-2">
             <a
               href="https://ai.cherazen.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-primary text-primary-foreground font-medium text-base hover:opacity-90 transition-all duration-300 shadow-lg glow-violet hover:shadow-xl hover:scale-[1.02]"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-primary text-primary-foreground font-medium text-base hover:opacity-90 transition-all duration-300 shadow-lg glow-violet hover:shadow-xl hover:scale-[1.02] min-h-[48px]"
             >
               Explore ApeironAI
             </a>
@@ -184,7 +184,7 @@ const HeroSection = () => {
               href="https://ai.cherazen.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full border border-border text-foreground font-medium text-base hover:bg-muted transition-all duration-300 shadow-sm hover:shadow-md hover:scale-[1.02]"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-full border-2 border-border text-foreground font-medium text-base hover:bg-muted transition-all duration-300 shadow-sm hover:shadow-md hover:scale-[1.02] min-h-[48px]"
             >
               Join Early Access
             </a>
@@ -192,11 +192,9 @@ const HeroSection = () => {
               href="https://labs.cherazen.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative inline-flex items-center justify-center px-8 py-4 rounded-full font-medium text-base transition-all duration-300 hover:scale-[1.02] overflow-hidden"
+              className="group relative inline-flex items-center justify-center px-8 py-4 rounded-full font-medium text-base transition-all duration-300 hover:scale-[1.02] overflow-hidden min-h-[48px]"
             >
-              {/* Glass bg */}
-              <span className="absolute inset-0 rounded-full bg-background/60 backdrop-blur-md border border-primary/20 group-hover:border-primary/40 transition-colors" />
-              {/* Gradient glow on hover */}
+              <span className="absolute inset-0 rounded-full bg-background/70 backdrop-blur-md border-2 border-primary/25 group-hover:border-primary/50 transition-colors" />
               <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 shadow-[0_0_24px_4px_hsl(255_70%_58%/0.2),0_0_24px_4px_hsl(166_60%_42%/0.15)]" />
               <span className="relative text-foreground">Enter Discovery Lab</span>
             </a>
