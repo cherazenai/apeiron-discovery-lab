@@ -159,15 +159,15 @@ const HeroSection = () => {
             <span className="text-gradient-violet-teal">Future of Scientific Discovery</span>
           </h1>
 
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-5 font-sans leading-relaxed">
+          <p className="text-lg md:text-xl text-foreground/80 max-w-2xl mx-auto mb-5 font-sans leading-relaxed">
             Cherazen is an independent AI research initiative building systems that help scientists discover new knowledge faster.
           </p>
 
-          <p className="text-base text-muted-foreground/80 max-w-2xl mx-auto mb-5 font-sans leading-relaxed">
+          <p className="text-base text-foreground/70 max-w-2xl mx-auto mb-5 font-sans leading-relaxed">
             Artificial intelligence is beginning to transform how scientific discovery happens. Cherazen is building next-generation tools that combine knowledge synthesis, reasoning models, and simulation systems to accelerate breakthroughs across multiple scientific disciplines.
           </p>
 
-          <p className="text-base text-muted-foreground/80 max-w-2xl mx-auto mb-12 font-sans leading-relaxed">
+          <p className="text-base text-foreground/70 max-w-2xl mx-auto mb-12 font-sans leading-relaxed">
             Our goal is to create intelligent systems capable of assisting researchers in exploring ideas, generating hypotheses, and testing possibilities before real-world experiments.
           </p>
 
