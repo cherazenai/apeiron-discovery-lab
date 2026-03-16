@@ -3,29 +3,80 @@ import apeironLogo from "@/assets/apeiron-logo.png";
 
 const Footer = () => {
   return (
-    <footer className="border-t border-border py-12 px-4 bg-background">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-        <Link to="/" className="flex items-center gap-2">
-          <img src={apeironLogo} alt="Cherazen" className="h-6 w-6" />
-          <span className="font-serif text-sm text-foreground">Cherazen</span>
-        </Link>
-        <div className="flex items-center gap-6 text-xs text-muted-foreground font-sans">
-          <Link to="/blog" className="hover:text-foreground transition-colors">Blog</Link>
-          <a href="#contact" className="hover:text-foreground transition-colors">Contact</a>
+    <footer className="border-t border-border py-16 px-4 bg-background">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+          {/* Brand */}
+          <div className="md:col-span-1">
+            <Link to="/" className="flex items-center gap-2 mb-4">
+              <img src={apeironLogo} alt="Cherazen" className="h-7 w-7" />
+              <span className="font-serif text-lg font-bold text-foreground">Cherazen</span>
+            </Link>
+            <p className="text-xs font-serif italic text-muted-foreground mb-3">
+              Toward Artificial Infinite Intelligence.
+            </p>
+            <p className="text-xs text-muted-foreground font-sans leading-relaxed">
+              Building AI systems for the future of scientific discovery.
+            </p>
+          </div>
+
+          {/* Navigation */}
+          <div>
+            <h4 className="text-sm font-sans font-medium text-foreground mb-4">Navigation</h4>
+            <div className="flex flex-col gap-2.5 text-sm text-muted-foreground font-sans">
+              <Link to="/" className="hover:text-foreground transition-colors">Home</Link>
+              <a href="#vision" className="hover:text-foreground transition-colors">Vision</a>
+              <a href="#products" className="hover:text-foreground transition-colors">Products</a>
+              <a href="#research" className="hover:text-foreground transition-colors">Research</a>
+              <a href="https://labs.cherazen.com" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">Labs</a>
+              <a href="#founder" className="hover:text-foreground transition-colors">Founder</a>
+              <Link to="/blog" className="hover:text-foreground transition-colors">Blog</Link>
+              <a href="#contact" className="hover:text-foreground transition-colors">Contact</a>
+            </div>
+          </div>
+
+          {/* Legal */}
+          <div>
+            <h4 className="text-sm font-sans font-medium text-foreground mb-4">Legal</h4>
+            <div className="flex flex-col gap-2.5 text-sm text-muted-foreground font-sans">
+              <Link to="/privacy" className="hover:text-foreground transition-colors">Privacy Policy</Link>
+              <Link to="/terms" className="hover:text-foreground transition-colors">Terms of Use</Link>
+              <Link to="/cookies" className="hover:text-foreground transition-colors">Cookie Policy</Link>
+              <Link to="/contact" className="hover:text-foreground transition-colors">Contact</Link>
+            </div>
+          </div>
+
+          {/* Contact & Social */}
+          <div>
+            <h4 className="text-sm font-sans font-medium text-foreground mb-4">Connect</h4>
+            <div className="flex flex-col gap-2 text-sm text-muted-foreground font-sans mb-4">
+              <a href="mailto:apeironaipro@gmail.com" className="hover:text-foreground transition-colors">apeironaipro@gmail.com</a>
+              <a href="mailto:cherazen.ai@gmail.com" className="hover:text-foreground transition-colors">cherazen.ai@gmail.com</a>
+            </div>
+            <div className="flex items-center gap-4 mt-4">
+              <a href="https://x.com/Apeironailabs" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+                <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              </a>
+              <a href="https://www.instagram.com/apeironaipro" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+                <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+              </a>
+              <a href="https://www.reddit.com/u/ApeironAI" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+                <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701z"/></svg>
+              </a>
+              <a href="https://youtube.com/@visionandromeda" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+                <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              </a>
+            </div>
+          </div>
         </div>
-        <p className="text-xs text-muted-foreground font-sans">
-          © {new Date().getFullYear()} Cherazen. Building AI for scientific discovery.
-        </p>
-        <div className="flex items-center gap-4">
-          <a href="https://x.com/Apeironailabs" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
-            <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          </a>
-          <a href="https://www.instagram.com/apeironailabs" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
-            <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-          </a>
-          <a href="https://youtube.com/@visionandromeda" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
-            <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-          </a>
+
+        <div className="border-t border-border pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-muted-foreground font-sans">
+            © {new Date().getFullYear()} Cherazen. Building AI for scientific discovery.
+          </p>
+          <p className="text-xs font-serif italic text-muted-foreground">
+            Toward Artificial Infinite Intelligence.
+          </p>
         </div>
       </div>
     </footer>

@@ -25,8 +25,8 @@ const socials = [
   },
   {
     platform: "Instagram",
-    username: "@apeironailabs",
-    link: "https://www.instagram.com/apeironailabs?igsh=MWtpcTFjbGQ5aG52bQ==",
+    username: "@apeironaipro",
+    link: "https://www.instagram.com/apeironaipro",
     icon: <Instagram className="w-6 h-6" />,
   },
   {

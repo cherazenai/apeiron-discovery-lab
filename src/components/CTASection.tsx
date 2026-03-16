@@ -8,7 +8,6 @@ const CTASection = () => {
 
   return (
     <section className="relative py-36 overflow-hidden">
-      {/* Background */}
       <div className="absolute inset-0">
         <img src={waveImg} alt="" className="w-full h-full object-cover opacity-30" loading="lazy" />
         <div className="absolute inset-0 bg-background/80" />
@@ -24,7 +23,10 @@ const CTASection = () => {
             Explore the Future of{" "}
             <span className="text-gradient-violet-teal">Scientific Discovery</span>
           </h2>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-12">
+          <p className="text-sm font-serif italic text-primary/70 mb-10">
+            Toward Artificial Infinite Intelligence.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="https://ai.cherazen.com"
               target="_blank"
