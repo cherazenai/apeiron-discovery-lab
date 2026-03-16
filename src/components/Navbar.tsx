@@ -157,7 +157,7 @@ const Navbar = () => {
             <img src={apeironLogo} alt="Cherazen" className="h-8 w-8" />
             <div className="flex flex-col">
               <span className="font-serif text-xl font-bold text-foreground tracking-tight leading-none">
-                Cherazen
+                ApeironAI
               </span>
               <span className="text-[9px] font-sans text-muted-foreground tracking-widest uppercase leading-none mt-0.5">
                 Toward Artificial Infinite Intelligence
