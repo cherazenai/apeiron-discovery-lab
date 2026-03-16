@@ -64,7 +64,6 @@ const Navbar = () => {
       ? activeSection === link.sectionId && isHomePage
       : !link.external && location.pathname === link.href;
 
-    // External link (Labs)
     if (link.external) {
       const linkEl = (
         <a
@@ -90,7 +89,6 @@ const Navbar = () => {
       );
     }
 
-    // Internal section link on homepage
     if (link.sectionId && isHomePage) {
       return (
         <button
@@ -112,7 +110,6 @@ const Navbar = () => {
       );
     }
 
-    // Section link but not on homepage
     if (link.sectionId && !isHomePage) {
       return (
         <Link
@@ -125,7 +122,6 @@ const Navbar = () => {
       );
     }
 
-    // Regular internal route (Blog)
     return (
       <Link
         key={link.label}
@@ -159,9 +155,14 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16 md:h-20">
           <Link to="/" className="flex items-center gap-2.5">
             <img src={apeironLogo} alt="Cherazen" className="h-8 w-8" />
-            <span className="font-serif text-xl font-bold text-foreground tracking-tight">
-              Cherazen
-            </span>
+            <div className="flex flex-col">
+              <span className="font-serif text-xl font-bold text-foreground tracking-tight leading-none">
+                Cherazen
+              </span>
+              <span className="text-[9px] font-sans text-muted-foreground tracking-widest uppercase leading-none mt-0.5">
+                Toward Artificial Infinite Intelligence
+              </span>
+            </div>
           </Link>
 
           <div className="hidden md:flex items-center gap-8">

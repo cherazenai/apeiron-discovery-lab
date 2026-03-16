@@ -18,16 +18,14 @@ const FounderSection = () => {
           >
             <p className="text-sm font-sans uppercase tracking-widest text-secondary mb-4">The Founder</p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold mb-8 leading-tight text-foreground">
-              Founder <span className="text-gradient-violet-magenta">Story</span>
+              The Vision Behind <span className="text-gradient-violet-magenta">Cherazen</span>
             </h2>
             <div className="space-y-4 text-base text-muted-foreground font-sans leading-relaxed">
-              <p>Cherazen was founded by <strong className="text-foreground">Manish Talukdar</strong>, an independent builder in his early twenties who started this journey from a modest background.</p>
-              <p>After losing his father and facing financial challenges, he had to begin working shortly after completing high school.</p>
-              <p>He worked in Amazon e-commerce operations for a year while learning about business, technology, and the rapidly evolving world of artificial intelligence.</p>
-              <p>Despite not having a traditional engineering background, he became deeply fascinated with AI and its potential to transform scientific discovery.</p>
-              <p>In today's AI era, powerful tools allow even small teams to build systems that once required massive organizations.</p>
-              <p>Driven by curiosity and persistence, Manish began building software projects independently.</p>
-              <p className="text-foreground/70 italic">Cherazen and ApeironAI are being developed from the ground up with limited resources but with a strong belief that innovative ideas and determination can create meaningful impact.</p>
+              <p><strong className="text-foreground">Manish Talukdar</strong> is the founder of Cherazen, an independent builder in his early twenties driven by a deep fascination with artificial intelligence and its potential to transform scientific discovery.</p>
+              <p>From an early age, Manish developed a strong curiosity about how technology could solve complex problems. His interest in AI grew as he explored how machine learning systems could analyze vast amounts of scientific data and uncover patterns invisible to human researchers.</p>
+              <p>The motivation behind Cherazen stems from a clear observation: the world produces more scientific knowledge every year than any individual can process, yet many of the most important discoveries may lie at the intersection of disciplines. AI has the potential to bridge these gaps.</p>
+              <p>In today's AI era, powerful open-source tools and accessible infrastructure allow small, focused teams to build systems that once required massive organizations. Manish recognized this opportunity and began building Cherazen and ApeironAI independently.</p>
+              <p className="text-foreground/70 italic">The vision is ambitious: to build foundational AI infrastructure that helps researchers explore ideas faster, generate hypotheses, and accelerate scientific breakthroughs across disciplines.</p>
             </div>
           </motion.div>
 

@@ -1,5 +1,5 @@
 import { motion, useInView } from "framer-motion";
-import { useRef, useEffect, useCallback, useState } from "react";
+import { useRef, useEffect, useCallback } from "react";
 
 /* ── Knowledge Graph Canvas ── */
 interface Node {
@@ -45,12 +45,7 @@ const KnowledgeGraphCanvas = () => {
       const angle = (i / LABELS.length) * Math.PI * 2 - Math.PI / 2;
       const x = cx + Math.cos(angle) * radius;
       const y = cy + Math.sin(angle) * radius;
-      return {
-        id: i, label, x, y, baseX: x, baseY: y,
-        vx: 0, vy: 0,
-        r: 5 + Math.random() * 4,
-        color: COLORS[i],
-      };
+      return { id: i, label, x, y, baseX: x, baseY: y, vx: 0, vy: 0, r: 5 + Math.random() * 4, color: COLORS[i] };
     });
   }, []);
 
@@ -90,12 +85,9 @@ const KnowledgeGraphCanvas = () => {
       const nodes = nodesRef.current;
       const disc = discoveryRef.current;
 
-      // Update node positions (slow orbit)
       nodes.forEach((n) => {
         n.x = n.baseX + Math.sin(time * 0.3 + n.id * 1.2) * 8;
         n.y = n.baseY + Math.cos(time * 0.25 + n.id * 0.9) * 6;
-
-        // Mouse repulsion
         const dx = n.x - mouseRef.current.x;
         const dy = n.y - mouseRef.current.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
@@ -106,7 +98,6 @@ const KnowledgeGraphCanvas = () => {
         }
       });
 
-      // Discovery pulse
       disc.timer += 0.01;
       if (disc.timer > 8 && !disc.active) {
         disc.active = true;
@@ -122,16 +113,13 @@ const KnowledgeGraphCanvas = () => {
         }
       }
 
-      // Draw edges
       EDGES.forEach((edge, idx) => {
         const a = nodes[edge.from];
         const b = nodes[edge.to];
         const isDisc = disc.active && idx === disc.edgeIdx;
-
         ctx.beginPath();
         ctx.moveTo(a.x, a.y);
         ctx.lineTo(b.x, b.y);
-
         if (isDisc) {
           ctx.strokeStyle = `rgba(123,92,255,${0.4 + disc.alpha * 0.6})`;
           ctx.lineWidth = 2;
@@ -141,7 +129,6 @@ const KnowledgeGraphCanvas = () => {
         }
         ctx.stroke();
 
-        // Traveling particle
         const t = (time * 0.15 + idx * 0.3) % 1;
         const px = a.x + (b.x - a.x) * t;
         const py = a.y + (b.y - a.y) * t;
@@ -151,29 +138,22 @@ const KnowledgeGraphCanvas = () => {
         ctx.fill();
       });
 
-      // Draw nodes
       nodes.forEach((n) => {
-        // Glow
         const grad = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r * 4);
         grad.addColorStop(0, n.color + "30");
         grad.addColorStop(1, "transparent");
         ctx.fillStyle = grad;
         ctx.fillRect(n.x - n.r * 4, n.y - n.r * 4, n.r * 8, n.r * 8);
-
-        // Node circle
         ctx.beginPath();
         ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
         ctx.fillStyle = n.color;
         ctx.fill();
-
-        // Label
         ctx.font = "11px Inter, system-ui, sans-serif";
         ctx.fillStyle = "rgba(100,100,120,0.8)";
         ctx.textAlign = "center";
         ctx.fillText(n.label, n.x, n.y + n.r + 16);
       });
 
-      // Discovery label
       if (disc.active && disc.alpha > 0.2) {
         const edge = EDGES[disc.edgeIdx];
         const a = nodes[edge.from];
@@ -199,11 +179,7 @@ const KnowledgeGraphCanvas = () => {
   }, [init]);
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="w-full h-full cursor-crosshair"
-      style={{ minHeight: 360 }}
-    />
+    <canvas ref={canvasRef} className="w-full h-full cursor-crosshair" style={{ minHeight: 360 }} />
   );
 };
 
@@ -226,7 +202,7 @@ const DiscoveryLabSection = () => {
             Experimental
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold mb-4">
-            Discovery Lab
+            ApeironAI Research Lab
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Interactive AI Research Experiments
@@ -239,16 +215,14 @@ const DiscoveryLabSection = () => {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="grid lg:grid-cols-2 gap-8 items-center"
         >
-          {/* Left: Text */}
           <div className="space-y-6">
             <p className="text-muted-foreground leading-relaxed">
-              Discovery Lab is an interactive environment where visitors can simulate how AI systems explore scientific ideas by combining data sources, reasoning models, and research objectives.
+              The ApeironAI Research Lab is an interactive environment demonstrating how AI systems can explore scientific ideas by combining research data, reasoning models, and knowledge graphs.
             </p>
             <p className="text-muted-foreground/80 leading-relaxed">
               This experience demonstrates the core concept behind ApeironAI — accelerating discovery through intelligent reasoning systems.
             </p>
 
-            {/* Console card */}
             <div className="rounded-2xl bg-[#0A0A0B] p-6 border border-border/10">
               <div className="flex items-center gap-2 mb-3">
                 <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
@@ -266,11 +240,10 @@ const DiscoveryLabSection = () => {
               className="inline-flex items-center justify-center px-8 py-4 rounded-full font-medium text-base text-primary-foreground transition-all duration-300 hover:scale-[1.02] min-h-[48px]"
               style={{ background: "linear-gradient(135deg, #7B5CFF, #1DE9B6)" }}
             >
-              Launch Discovery Lab
+              Enter Research Lab
             </a>
           </div>
 
-          {/* Right: Knowledge Graph */}
           <div className="rounded-3xl bg-background border border-border/60 shadow-lg overflow-hidden aspect-square max-h-[480px]">
             <KnowledgeGraphCanvas />
           </div>

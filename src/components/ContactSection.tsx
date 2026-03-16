@@ -27,13 +27,13 @@ const ContactSection = () => {
 
           {/* Emails */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-            <a href="mailto:cherazen.ai@gmail.com" className="inline-flex items-center gap-3 px-6 py-4 rounded-2xl bg-card border border-border text-sm text-foreground font-sans hover:shadow-lg hover:border-primary/20 transition-all duration-300">
+            <a href="mailto:apeironaipro@gmail.com" className="inline-flex items-center gap-3 px-6 py-4 rounded-2xl bg-card border border-border text-sm text-foreground font-sans hover:shadow-lg hover:border-primary/20 transition-all duration-300">
               <Mail className="w-4 h-4 text-primary" />
-              cherazen.ai@gmail.com
+              apeironaipro@gmail.com
             </a>
-            <a href="mailto:apeironailabs@gmail.com" className="inline-flex items-center gap-3 px-6 py-4 rounded-2xl bg-card border border-border text-sm text-foreground font-sans hover:shadow-lg hover:border-primary/20 transition-all duration-300">
+            <a href="mailto:cherazen.ai@gmail.com" className="inline-flex items-center gap-3 px-6 py-4 rounded-2xl bg-card border border-border text-sm text-foreground font-sans hover:shadow-lg hover:border-primary/20 transition-all duration-300">
               <Mail className="w-4 h-4 text-secondary" />
-              apeironailabs@gmail.com
+              cherazen.ai@gmail.com
             </a>
           </div>
         </motion.div>
